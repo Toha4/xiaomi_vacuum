@@ -7,16 +7,10 @@ from .miio import DreameVacuum, DeviceException
 
 from homeassistant.components.vacuum import (
     PLATFORM_SCHEMA,
-    STATE_CLEANING,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
-    STATE_DOCKED,
-    STATE_ERROR,
     StateVacuumEntity,
-    VacuumEntityFeature
+    VacuumEntityFeature,
+    VacuumActivity
 )
-
 
 from homeassistant.const import CONF_HOST, CONF_NAME, CONF_TOKEN
 from homeassistant.helpers import config_validation as cv, entity_platform
@@ -66,12 +60,12 @@ SUPPORT_XIAOMI = (
 )
 
 STATE_CODE_TO_STATE = {
-    1: STATE_CLEANING,
-    2: STATE_IDLE,
-    3: STATE_PAUSED,
-    4: STATE_ERROR,
-    5: STATE_RETURNING,
-    6: STATE_DOCKED,
+    1: VacuumActivity.CLEANING,
+    2: VacuumActivity.IDLE,
+    3: VacuumActivity.PAUSED,
+    4: VacuumActivity.ERROR,
+    5: VacuumActivity.RETURNING,
+    6: VacuumActivity.DOCKED,
 }
 
 SPEED_CODE_TO_NAME = {
